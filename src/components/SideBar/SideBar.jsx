@@ -1,24 +1,15 @@
 import data from "../../data/plants.json";
 import Link from "../Link.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { sortByCategory } from "../../stores/plantsSlice.js";
+import usePlantActions from "../../hooks/usePlantActions.js";
 
 export default function SideBar() {
-	const dispatch = useDispatch();
-	const plants = useSelector((state) => state.plants.items);
+	const { plants, handleSortByCategory } = usePlantActions();
 
 	return (
 		<div className="sidebar">
 			<Link
 				selected={plants.category}
-				handleClick={() => {
-					dispatch(
-						sortByCategory({
-							category: "All",
-							plants: data,
-						})
-					);
-				}}>
+				handleClick={() => handleSortByCategory("All", data)}>
 				All
 			</Link>
 			{data.map((category) => {
@@ -26,14 +17,9 @@ export default function SideBar() {
 					<Link
 						selected={plants.category}
 						key={category.category}
-						handleClick={() => {
-							dispatch(
-								sortByCategory({
-									category: category.category,
-									plants: category.plants,
-								})
-							);
-						}}>
+						handleClick={() =>
+							handleSortByCategory(category.category, category.plants)
+						}>
 						{category.category}
 					</Link>
 				);

@@ -4,7 +4,7 @@ import useCartActions from "../../hooks/useCartActions";
 export default function PlantCard({ plant }) {
 	const { cart, handleAddItem, handleRemoveItem } = useCartActions();
 
-	let isInCart = cart.find((i) => i.name === plant.name);
+	const isInCart = cart.find((i) => i.name === plant.name);
 
 	return (
 		<li className="plant_container">

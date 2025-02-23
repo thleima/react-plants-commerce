@@ -1,44 +1,23 @@
-import Select from "react-select";
+import { useState, useEffect } from "react";
 import { sortingOptions } from "../../lib/constants.js";
-import { useState, useMemo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { sortByCategory } from "../../stores/plantsSlice.js";
 import data from "../../data/plants.json";
+import Select from "react-select";
 import PlantCard from "./PlantCard.jsx";
 import Loading from "../Loading.jsx";
+import usePlantActions from "../../hooks/usePlantActions.js";
+import useSortedPlants from "../../hooks/useSortedPlants.js";
 
 export default function ItemList() {
-	const dispatch = useDispatch();
-	const plants = useSelector((state) => state.plants.items);
+	const { plants, handleSortByCategory } = usePlantActions();
 	const [sortBy, setSortBy] = useState("default");
 
 	useEffect(() => {
 		if (plants.plants.length === 0) {
-			dispatch(
-				sortByCategory({
-					category: "All",
-					plants: data,
-				})
-			);
+			handleSortByCategory("All", data);
 		}
-	}, [dispatch, plants]);
+	}, [plants.plants, handleSortByCategory]);
 
-	let sortedPlants = useMemo(() => {
-		return [...plants.plants].sort((a, b) => {
-			switch (sortBy) {
-				case "default":
-					return 0;
-				case "expensive":
-					return Number(b.cost.slice(1)) > Number(a.cost.slice(1)) ? 1 : -1;
-				case "cheaper":
-					return Number(b.cost.slice(1)) > Number(a.cost.slice(1)) ? -1 : 1;
-				case "alphabetical":
-					return a.name.localeCompare(b.name);
-				default:
-					return 0;
-			}
-		});
-	}, [sortBy, plants]);
+	let sortedPlants = useSortedPlants(plants.plants, sortBy);
 
 	return (
 		<ul className="item-list">
