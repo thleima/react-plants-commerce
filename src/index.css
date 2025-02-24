@@ -316,8 +316,14 @@ header {
   .content {
     grid-template-columns: 3fr 2fr;
   }
+  .sidebar {
+    gap: 6px;
+  }
   .link {
     font-size: 14px;
+  }
+  .link:hover {
+    border: none;
   }
   .plant_container {
     width: 200px;
