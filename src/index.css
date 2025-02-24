@@ -318,9 +318,11 @@ header {
   }
   .sidebar {
     gap: 6px;
+    height: 100%;
   }
   .link {
-    font-size: 14px;
+    font-size: 12px;
+    border: none;
   }
   .link:hover {
     border: none;
@@ -336,7 +338,7 @@ header {
   }
   
   .plant_container p {
-    font-size: 14px;
+    font-size: 12px;
     margin: 6px 0;
   }
   .checkout p {
