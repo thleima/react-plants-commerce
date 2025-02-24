@@ -9,16 +9,16 @@ export default function PlantSmallCard({
 	return (
 		<li className="plant_container">
 			<img src={plant.image} alt={plant.name} />
-			<div className="item_info">
+			<div className="basket--item_info">
 				<h4>{plant.name}</h4>
 				<p>
 					<b>{plant.cost}</b>
 				</p>
-				<p>
-					Total: <b>${totalCost}</b>
-				</p>
 			</div>
-			<div className="checkout--btn_container">
+			<p>
+				Total: <b>${totalCost}</b>
+			</p>
+			<div className="basket--btn_container">
 				<Button
 					type="tertiary"
 					handleClick={() => {

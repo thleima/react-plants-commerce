@@ -6,7 +6,7 @@ export default function SideBar() {
 	const { plants, handleSortByCategory } = usePlantActions();
 
 	return (
-		<div className="sidebar">
+		<section className="sidebar">
 			<Link
 				selected={plants.category}
 				handleClick={() => handleSortByCategory("All", data)}>
@@ -24,6 +24,6 @@ export default function SideBar() {
 					</Link>
 				);
 			})}
-		</div>
+		</section>
 	);
 }

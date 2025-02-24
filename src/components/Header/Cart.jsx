@@ -1,6 +1,6 @@
 export default function Cart({ handleClick, text }) {
 	return (
-		<div onClick={handleClick} className="basket--header">
+		<div onClick={handleClick} className="toggle--header">
 			<h3>{text}</h3>
 			<Ship />
 		</div>

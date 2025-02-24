@@ -12,3 +12,6 @@ export const calculateTotalAmount = (cart) => {
 	});
 	return total;
 };
+export function calculateTotalQuantity(cart) {
+	return cart.reduce((acc, item) => acc + item.quantity, 0);
+}

@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header/Header";
 import ItemList from "./components/ItemList/ItemList";
 import SideBar from "./components/SideBar/SideBar";
+import Basket from "./components/Checkout/Basket";
 import Checkout from "./components/Checkout/Checkout";
 import { useState } from "react";
 
@@ -24,8 +25,8 @@ export default function App() {
 				<section className="content">
 					{checkout ? (
 						<>
-							<div></div>
-							<Checkout />
+							<Basket />
+							<Checkout handleClick={() => setCheckout(!checkout)} />
 						</>
 					) : (
 						<>
@@ -35,6 +36,7 @@ export default function App() {
 					)}
 				</section>
 			</main>
+
 			<Footer />
 		</>
 	);
